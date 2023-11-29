@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { StatusBar, SafeAreaView } from "react-native";
+import useProdutores from "./src/hooks/useProdutores";
+
+import Home from "./src/telas/Home";
+import Cesta from "./src/telas/Cesta";
 
 export default function App() {
+  const produtores = useProdutores(false);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar />
+      <Home melhoresProdutores={false} />
+      {/* {produtores.length > 0 && 
+      <Cesta produtor={{
+        nome: produtores[0].nome, 
+        imagem: produtores[0].imagem
+      }}
+      {...produtores[0].cestas[0]} />
+    } */}
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
